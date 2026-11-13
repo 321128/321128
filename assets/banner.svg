@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Arindam Chakraborty — applied AI builder and artist">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="0.55" stop-color="#141a3a"/>
+      <stop offset="1" stop-color="#2a1338"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff7a59"/>
+      <stop offset="0.5" stop-color="#f7c948"/>
+      <stop offset="1" stop-color="#5eead4"/>
+    </linearGradient>
+    <linearGradient id="wave" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="210" y2="0">
+      <stop offset="0" stop-color="#ff7a59"/>
+      <stop offset="0.5" stop-color="#f7c948"/>
+      <stop offset="1" stop-color="#5eead4"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff7a59" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ff7a59" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#5eead4" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#5eead4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#ffffff" fill-opacity="0.07"/>
+    </pattern>
+    <clipPath id="card"><rect width="1200" height="320" rx="22"/></clipPath>
+    <style>
+      .bar { transform-box: fill-box; transform-origin: center; animation: pulse 1.6s ease-in-out infinite; }
+      @keyframes pulse { 0%,100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+      .drift { animation: drift 9s ease-in-out infinite alternate; }
+      @keyframes drift { from { transform: translate(0,0); } to { transform: translate(-40px,18px); } }
+      text { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="1200" height="320" fill="url(#bg)"/>
+    <rect width="1200" height="320" fill="url(#dots)"/>
+    <g class="drift">
+      <circle cx="1010" cy="70" r="210" fill="url(#glowA)"/>
+      <circle cx="1130" cy="290" r="190" fill="url(#glowB)"/>
+    </g>
+
+    <!-- brush stroke: the artist side -->
+    <path d="M70 246 C 210 222, 330 266, 470 242 S 700 224, 820 244" fill="none" stroke="url(#ink)" stroke-width="5" stroke-linecap="round" opacity="0.9"/>
+
+    <!-- name + tagline -->
+    <g>
+      <text x="70" y="96" font-size="17" letter-spacing="5" fill="#f7c948" font-weight="600">HI, I'M</text>
+      <text x="68" y="160" font-size="58" font-weight="800" fill="#ffffff">Arindam Chakraborty</text>
+      <text x="70" y="204" font-size="22" fill="#c7cbe6">Applied AI builder · sometimes a nerd, mostly an artist</text>
+      <text x="70" y="282" font-size="16" fill="#8f96c2" letter-spacing="1.5">SETIDURE TECHNOLOGIES  ·  NEW DELHI</text>
+    </g>
+
+    <!-- voice waveform: the AI side -->
+    <g transform="translate(905 160)">
+      <g fill="url(#wave)">
+        <rect class="bar" x="0"   y="-22" width="10" height="44"  rx="5" style="animation-delay:0s"/>
+        <rect class="bar" x="20"  y="-44" width="10" height="88"  rx="5" style="animation-delay:.15s"/>
+        <rect class="bar" x="40"  y="-66" width="10" height="132" rx="5" style="animation-delay:.3s"/>
+        <rect class="bar" x="60"  y="-38" width="10" height="76"  rx="5" style="animation-delay:.45s"/>
+        <rect class="bar" x="80"  y="-80" width="10" height="160" rx="5" style="animation-delay:.6s"/>
+        <rect class="bar" x="100" y="-54" width="10" height="108" rx="5" style="animation-delay:.75s"/>
+        <rect class="bar" x="120" y="-30" width="10" height="60"  rx="5" style="animation-delay:.9s"/>
+        <rect class="bar" x="140" y="-70" width="10" height="140" rx="5" style="animation-delay:1.05s"/>
+        <rect class="bar" x="160" y="-46" width="10" height="92"  rx="5" style="animation-delay:1.2s"/>
+        <rect class="bar" x="180" y="-24" width="10" height="48"  rx="5" style="animation-delay:1.35s"/>
+        <rect class="bar" x="200" y="-12" width="10" height="24"  rx="5" style="animation-delay:1.5s"/>
+      </g>
+    </g>
+  </g>
+</svg>
