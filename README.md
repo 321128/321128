@@ -157,3 +157,36 @@ I build **practical AI products** at [Setidure Technologies](https://setidure.co
   <a href="https://setidure.com"><img src="https://img.shields.io/badge/Website-setidure.com-ff7a59?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=0b1020" alt="setidure.com"></a>
   <a href="https://github.com/Setidure-Technologies"><img src="https://img.shields.io/badge/GitHub-Setidure_Technologies-5eead4?style=for-the-badge&logo=github&logoColor=white&labelColor=0b1020" alt="Setidure Technologies on GitHub"></a>
 </p>
+
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catch the ball</title>
+<style>
+html,body{margin:0;height:100%;background:#0b1020;color:#cfd3ea;font-family:system-ui,sans-serif;overflow:hidden;cursor:crosshair}
+#hint{position:fixed;top:16px;left:0;right:0;text-align:center;font-size:14px;opacity:.7}
+#ball{position:fixed;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a93,#e11d2e 55%,#8f0a16);box-shadow:0 8px 18px rgba(0,0,0,.5);will-change:transform;left:0;top:0}
+#score{position:fixed;bottom:16px;left:0;right:0;text-align:center;font-size:14px}
+</style></head><body>
+<div id="hint">Try to click the red ball — it runs away from your mouse.</div>
+<div id="ball"></div><div id="score">Catches: 0</div>
+<script>
+const ball=document.getElementById('ball'),score=document.getElementById('score');
+let W=innerWidth,H=innerHeight,x=W*0.1,y=H*0.5,vx=2.5,vy=0,mx=-999,my=-999,catches=0;
+addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});
+ball.addEventListener('click',()=>{catches++;score.textContent='Catches: '+catches+' (nice!)';x=Math.random()*(W-60);y=Math.random()*(H-60)});
+function tick(){
+  const cx=x+22,cy=y+22,dx=cx-mx,dy=cy-my,d=Math.hypot(dx,dy),R=190;
+  if(d<R){const f=(R-d)/R*2.6;vx+=dx/(d||1)*f;vy+=dy/(d||1)*f}
+  else{vx+=(Math.random()-.5)*.08;vy*=.98;if(Math.abs(vx)<1.6)vx+=Math.sign(vx||1)*.05} // idle: drifts left/right
+  vx*=.96;vy*=.94;
+  const sp=Math.hypot(vx,vy),m=14;if(sp>m){vx*=m/sp;vy*=m/sp}
+  x+=vx;y+=vy;
+  if(x<0){x=0;vx=Math.abs(vx)}if(x>W-44){x=W-44;vx=-Math.abs(vx)}
+  if(y<0){y=0;vy=Math.abs(vy)}if(y>H-44){y=H-44;vy=-Math.abs(vy)}
+  // cornered? hop to a random spot so it's catchable but sneaky
+  if(d<60&&(x<4||x>W-48||y<4||y>H-48)){x=Math.random()*(W-60);y=Math.random()*(H-60)}
+  ball.style.transform=`translate(${x}px,${y}px) scale(${1+Math.min(sp,12)/40},${1-Math.min(sp,12)/60})`;
+  requestAnimationFrame(tick)}
+tick();
+</script></body></html>
